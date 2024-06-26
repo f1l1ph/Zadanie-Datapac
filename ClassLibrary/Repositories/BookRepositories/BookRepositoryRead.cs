@@ -2,9 +2,9 @@
 using ClassLibrary.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace ClassLibrary.Repositories;
+namespace ClassLibrary.Repositories.BookRepositories;
 
-public class BookRepositoryRead(LibraryContextRead contextRead): IBookRepositoryRead
+public class BookRepositoryRead(LibraryContextRead contextRead) : IBookRepositoryRead
 {
     public async Task<IEnumerable<BookEntity>> GetBooks()
     {

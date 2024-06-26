@@ -1,6 +1,6 @@
 ﻿using ClassLibrary.Context;
 using ClassLibrary.Entities;
-using ClassLibrary.Repositories;
+using ClassLibrary.Repositories.BookRepositories;
 using MediatR;
 
 namespace ClassLibrary.Application.Book;

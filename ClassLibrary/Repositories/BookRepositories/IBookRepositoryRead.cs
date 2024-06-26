@@ -1,6 +1,6 @@
 ﻿using ClassLibrary.Entities;
 
-namespace ClassLibrary.Repositories;
+namespace ClassLibrary.Repositories.BookRepositories;
 
 public interface IBookRepositoryRead
 {

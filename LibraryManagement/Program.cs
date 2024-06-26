@@ -1,6 +1,6 @@
 using ClassLibrary.Application.Book;
 using ClassLibrary.Context;
-using ClassLibrary.Repositories;
+using ClassLibrary.Repositories.BookRepositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

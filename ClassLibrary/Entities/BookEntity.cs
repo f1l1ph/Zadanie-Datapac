@@ -9,6 +9,8 @@ public class BookEntity
     public required string Name { get; set; }
     public required string Author { get; set; }
 
+    public BorrowOrderEntity? ActiveBorrowOrder { get; set; }
+
     public ICollection<BorrowOrderEntity> BorrowOrders { get; } = new List<BorrowOrderEntity>();
 }
 
