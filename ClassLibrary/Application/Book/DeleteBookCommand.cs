@@ -2,7 +2,7 @@
 
 namespace ClassLibrary.Application.Book;
 
-public class DeleteBookCommand:IRequest<int>
+public class DeleteBookCommand(int id):IRequest<int>
 {
-    public int Id { get; set; }
+    public int Id { get; set; } = id;
 }

@@ -15,6 +15,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(AddBookCommand).Assembly));
 
 builder.Services.AddTransient<IBookRepositoryWrite, BookRepositoryWrite>();
+builder.Services.AddTransient<IBookRepositoryRead, BookRepositoryRead>();
 
 builder.Services.AddDbContext<LibraryContextWrite>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("db"),
@@ -27,11 +28,11 @@ builder.Services.AddDbContext<LibraryContextRead>(options =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
-//{
+if (app.Environment.IsDevelopment())
+{
     app.UseSwagger();
     app.UseSwaggerUI();
-//}
+}
 
 app.UseHttpsRedirection();
 

@@ -7,5 +7,7 @@ public class LibraryContextRead(DbContextOptions<LibraryContextRead> options) : 
 {
     public DbSet<BookEntity> Books { get; set; }
 
+    public DbSet<BorrowOrderEntity> Orders { get; set; }
+
 }
 

@@ -8,6 +8,7 @@ public class BookEntity
     public int Id { get; set; }
     public required string Name { get; set; }
     public required string Author { get; set; }
-    //and many other useless fields...
+
+    public ICollection<BorrowOrderEntity> BorrowOrders { get; } = new List<BorrowOrderEntity>();
 }
 

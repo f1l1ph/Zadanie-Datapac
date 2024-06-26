@@ -8,7 +8,7 @@ public class GetBookByIdQueryHandler(IBookRepositoryRead repositoryRead): IReque
 {
     public async Task<BookEntity> Handle(GetBookByIdQuery request, CancellationToken cancellationToken)
     {
-        return await repositoryRead.GetBookById(request.id) ?? new BookEntity
+        return await repositoryRead.GetBookById(request.Id) ?? new BookEntity
         {
             Name = "",
             Author = ""
