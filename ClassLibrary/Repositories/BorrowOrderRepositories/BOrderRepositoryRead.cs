@@ -1,21 +1,31 @@
-﻿using ClassLibrary.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+using ClassLibrary.Context;
+using ClassLibrary.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace ClassLibrary.Repositories.BorrowOrderRepositories;
-public class BOrderRepositoryRead:IBOrderRepositoryRead
+public class BOrderRepositoryRead(LibraryContextRead context):IBOrderRepositoryRead
 {
-    public Task<IEnumerable<BorrowOrderEntity>> GetBOrders()
+    public async Task<IEnumerable<BorrowOrderEntity?>> GetBOrders()
     {
-        throw new NotImplementedException();
+        return await context.Orders.ToArrayAsync();
     }
 
-    public Task<BorrowOrderEntity> GetBorrowOrderById(int id)
+    public async Task<BorrowOrderEntity?> GetBorrowOrderById(int id)
     {
-        throw new NotImplementedException();
+        return await context.Orders.FirstOrDefaultAsync(x => x.Id == id) ?? null;
     }
 
-    public Task<IEnumerable<BorrowOrderEntity>> GetBorrowOrderByBookId(int id)
+    public async Task<IEnumerable<BorrowOrderEntity>?> GetBorrowOrderByBookId(int id)
     {
-        throw new NotImplementedException();
+        var book = await context.Books.FirstOrDefaultAsync(x => x.Id == id) ?? null;
+
+        if (book == null) return null;
+
+        var orders = await context.Orders.Where(x => x.Book.Id == id).ToArrayAsync();
+
+        if (orders.Length < 1) return null;
+
+        return orders;
     }
 }
-

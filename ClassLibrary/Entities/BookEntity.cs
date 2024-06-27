@@ -9,8 +9,7 @@ public class BookEntity
     public required string Name { get; set; }
     public required string Author { get; set; }
 
-    public BorrowOrderEntity? ActiveBorrowOrder { get; set; }
+    public BorrowOrderEntity? ActiveBorrowOrder { get; set; }//if ActiveBorrowOrder == null, book is available
 
-    public ICollection<BorrowOrderEntity> BorrowOrders { get; } = new List<BorrowOrderEntity>();
+    public ICollection<BorrowOrderEntity> BorrowOrders { get; set; } = new List<BorrowOrderEntity>();
 }
-

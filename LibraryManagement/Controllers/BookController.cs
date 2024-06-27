@@ -16,7 +16,7 @@ public class BookController(IMediator mediator) : Controller
         return await mediator.Send(new GetBooksQuery());
     }
 
-    [HttpGet($"GetBookById{{id:int}}")]
+    [HttpGet($"GetBookById/{{id:int}}")]
     public async Task<IActionResult> GetBookById(int id)
     {
         var book = await mediator.Send(new GetBookByIdQuery(id));
@@ -44,7 +44,6 @@ public class BookController(IMediator mediator) : Controller
     [HttpDelete($"DeleteBook{{id:int}}")]
     public async Task<IActionResult> DeleteBook(int id)
     {
-        
         var book = await mediator.Send(new DeleteBookCommand(id));
         if (book == 0) { return NotFound("Book was not found, sorry :("); }
         return Ok(book);

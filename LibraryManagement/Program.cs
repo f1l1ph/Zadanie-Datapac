@@ -1,6 +1,7 @@
 using ClassLibrary.Application.Book;
 using ClassLibrary.Context;
 using ClassLibrary.Repositories.BookRepositories;
+using ClassLibrary.Repositories.BorrowOrderRepositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +17,8 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(AddBo
 
 builder.Services.AddTransient<IBookRepositoryWrite, BookRepositoryWrite>();
 builder.Services.AddTransient<IBookRepositoryRead, BookRepositoryRead>();
+builder.Services.AddTransient<IBOrderRepositoryWrite, BOrderRepositoryWrite>();
+builder.Services.AddTransient<IBOrderRepositoryRead, BOrderRepositoryRead>();
 
 builder.Services.AddDbContext<LibraryContextWrite>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("db"),

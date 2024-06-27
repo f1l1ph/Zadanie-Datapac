@@ -7,6 +7,8 @@ public class BorrowOrderEntity
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
 
+    public bool IsActive { get; set; } = true;// check whether we can borrow the book or not
+
     public DateTime OpenDate { get; set; }
     public DateTime CloseDate { get; set; }
 
@@ -14,4 +16,3 @@ public class BorrowOrderEntity
     public BookEntity Book { get; set; } = null!;
 
 }
-

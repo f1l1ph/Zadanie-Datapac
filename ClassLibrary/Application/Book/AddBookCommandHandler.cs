@@ -4,7 +4,7 @@ using MediatR;
 
 namespace ClassLibrary.Application.Book;
 
-public class AddBookCommandHandler(IBookRepositoryWrite bookRepositoryWrite):IRequestHandler<AddBookCommand, int>
+public class AddBookCommandHandler(IBookRepositoryWrite bookRepositoryWrite) : IRequestHandler<AddBookCommand, int>
 {
     public async Task<int> Handle(AddBookCommand request, CancellationToken cancellationToken)
     {
