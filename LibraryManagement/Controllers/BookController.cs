@@ -47,7 +47,7 @@ public class BookController(IMediator mediator) : Controller
         };
     }
 
-    [HttpDelete($"DeleteBook{{id:int}}")]
+    [HttpDelete($"DeleteBook/{{id:int}}")]
     public async Task<IActionResult> DeleteBook(int id)
     {
         var book = await mediator.Send(new DeleteBookCommand(id));

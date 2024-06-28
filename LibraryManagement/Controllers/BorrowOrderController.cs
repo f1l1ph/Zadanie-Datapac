@@ -16,7 +16,7 @@ public class BorrowOrderController(IMediator mediator) : Controller
     }
 
     [HttpGet($"GetBorrowOrder/{{id:int}}")]
-    public async Task<IActionResult> GetBook(int id)
+    public async Task<IActionResult> GetBorrowOrder(int id)
     {
        var order = await mediator.Send(new GetBOrderByIdQuery(id));
         
@@ -30,7 +30,7 @@ public class BorrowOrderController(IMediator mediator) : Controller
     {
         var order = await mediator.Send(new GetBOrderByBookIdQuery(id));
 
-        if(order == null){ return NotFound("Sorry order or book was not found :("); }
+        if(order == null){ return NotFound("Sorry, order or book was not found :("); }
 
         var orderArray = order.ToArray();
 
@@ -66,7 +66,7 @@ public class BorrowOrderController(IMediator mediator) : Controller
         return Ok(x);
     }
 
-    [HttpDelete($"RemoveOrder{{id:int}}")]
+    [HttpDelete($"RemoveOrder/{{id:int}}")]
     public async Task<IActionResult> DeleteBook(int id)
     {
         var order = await mediator.Send(new DeleteBOrderCommand(id));
