@@ -16,6 +16,7 @@ public class AddBOrderCommandHandler(IBOrderRepositoryWrite repository, IBookRep
 
         var order = new BorrowOrderEntity
         {
+            User = request.Order.User,
             OpenDate = request.Order.OpenDate,
             CloseDate = request.Order.CloseDate,
             BookId = request.Order.BookId,

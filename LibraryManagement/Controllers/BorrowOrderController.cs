@@ -54,10 +54,14 @@ public class BorrowOrderController(IMediator mediator) : Controller
         return Ok(order);
     }
 
-    [HttpPut("UpdateBorrowOrder")]
-    public async Task<IActionResult> UpdateBook()
+    [HttpPut($"ReturnBook/{{id:int}}")]
+    public async Task<IActionResult> ReturnBook(int id)
     {
-        return NotFound("Sorry but due to security reasons you are unable to Modify Borrow orders");
+        var x = await mediator.Send(new ReturnBOrderCommand(id));
+
+        if (x == 0) { return NotFound("Sorry, something went wrong");}
+
+        return Ok(x);
     }
 
     [HttpDelete($"RemoveOrder{{id:int}}")]
