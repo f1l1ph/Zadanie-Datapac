@@ -47,11 +47,13 @@ public class BorrowOrderController(IMediator mediator) : Controller
         //check if book has active borrow order, if so, check if active borrow order exists and isn't expired and check if has been returned
 
         var order = await mediator.Send(command);
-        if (order == 0) { return NotFound("Book not found"); }
-
-        if (order == -1) { return NotFound("Book is not available"); }
-
-        return Ok(order);
+        return order switch
+        {
+            0 => NotFound("Book not found"),
+            -1 => NotFound("Book is not available"),
+            -2 => NotFound("Sorry, wrong input"),
+            _ => Ok(order)
+        };
     }
 
     [HttpPut($"ReturnBook/{{id:int}}")]

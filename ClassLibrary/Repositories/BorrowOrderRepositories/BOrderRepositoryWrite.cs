@@ -1,15 +1,20 @@
-﻿using ClassLibrary.Context;
+﻿using System.Net.Http.Headers;
+using ClassLibrary.Context;
 using ClassLibrary.Entities;
 using ClassLibrary.Repositories.BookRepositories;
+using ClassLibrary.Validation;
 using Microsoft.EntityFrameworkCore;
 
 namespace ClassLibrary.Repositories.BorrowOrderRepositories;
 
 public class BOrderRepositoryWrite(LibraryContextWrite contextWrite) : IBOrderRepositoryWrite
-{//call for returning books
- //when returning book, set close date to current date
+{
     public async Task<int> AddOrder(BorrowOrderEntity order)
     {
+        var validator = new BOrderValidator();
+        var result = await validator.ValidateAsync(order);
+        if (!result.IsValid) { return -2; }
+
         var book = await contextWrite.Books
             .FirstOrDefaultAsync(b => b.Id == order.BookId);
 
