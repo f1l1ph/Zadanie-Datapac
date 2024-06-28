@@ -22,8 +22,8 @@ Repository is responsible for communicating with database using entity framework
 Added validation using Fluent validation library.
 Validation works when adding/modifing book. Also when adding new BorrowOrder.
 
-<em>endpoints on the swagger screenshot.</em>
+<em>endpoints on the swagger screenshot.</em></br>
 ![Datapac-swagger](https://github.com/f1l1ph/Zadanie-Datapac/assets/50553234/c8a7a274-f3b1-4039-9956-f00a0ada7ec1)
 
-<em>Db diagram, for this project I am using Postgres</em>
+<em>Db diagram, for this project I am using Postgres</em></br>
 ![Datapac-dbD](https://github.com/f1l1ph/Zadanie-Datapac/assets/50553234/941b34ef-381b-4295-83a6-b771bc16e377)
