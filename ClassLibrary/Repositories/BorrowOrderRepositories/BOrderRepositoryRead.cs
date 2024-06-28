@@ -24,8 +24,6 @@ public class BOrderRepositoryRead(LibraryContextRead context):IBOrderRepositoryR
 
         var orders = await context.Orders.Where(x => x.Book.Id == id).ToArrayAsync();
 
-        if (orders.Length < 1) return null;
-
-        return orders;
+        return orders.Length < 1 ? null : orders;
     }
 }

@@ -3,6 +3,7 @@ using ClassLibrary.Context;
 using ClassLibrary.Entities;
 using ClassLibrary.Repositories.BookRepositories;
 using ClassLibrary.Validation;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace ClassLibrary.Repositories.BorrowOrderRepositories;
@@ -11,15 +12,16 @@ public class BOrderRepositoryWrite(LibraryContextWrite contextWrite) : IBOrderRe
 {
     public async Task<int> AddOrder(BorrowOrderEntity order)
     {
+        var book = await contextWrite.Books.Include(bookEntity => bookEntity.ActiveBorrowOrder)
+            .FirstOrDefaultAsync(b => b.Id == order.BookId);
+
+        if (book == null) { return 0; }
+        if (book.ActiveBorrowOrder != null) { return -1; }
+
         var validator = new BOrderValidator();
         var result = await validator.ValidateAsync(order);
         if (!result.IsValid) { return -2; }
 
-        var book = await contextWrite.Books
-            .FirstOrDefaultAsync(b => b.Id == order.BookId);
-
-        if (book == null) return 0;
-        if(book.ActiveBorrowOrder != null) return 0;
         book.BorrowOrders.Add(order);
         book.ActiveBorrowOrder = order;
 
