@@ -2,7 +2,10 @@ using ClassLibrary.Application.Book;
 using ClassLibrary.Context;
 using ClassLibrary.Repositories.BookRepositories;
 using ClassLibrary.Repositories.BorrowOrderRepositories;
+using EmailWorker;
 using Microsoft.EntityFrameworkCore;
+using ClassLibrary.Services;
+using LibraryManagement.EmailWorker;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +23,10 @@ builder.Services.AddTransient<IBookRepositoryRead, BookRepositoryRead>();
 builder.Services.AddTransient<IBOrderRepositoryWrite, BOrderRepositoryWrite>();
 builder.Services.AddTransient<IBOrderRepositoryRead, BOrderRepositoryRead>();
 
+builder.Services.AddHostedService<EmailHostedService>();
+builder.Services.AddScoped<IEmailService, EmailService>();
+
+
 builder.Services.AddDbContext<LibraryContextWrite>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("db"),
         b => b.MigrationsAssembly("LibraryManagement")));
@@ -27,6 +34,9 @@ builder.Services.AddDbContext<LibraryContextWrite>(options =>
 builder.Services.AddDbContext<LibraryContextRead>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("db"), 
         b => b.MigrationsAssembly("LibraryManagement")));
+
+builder.Services.AddHostedService<Worker>();
+
 
 var app = builder.Build();
 

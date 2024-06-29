@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using ClassLibrary.Context;
+﻿using ClassLibrary.Context;
 using ClassLibrary.Entities;
 using Microsoft.EntityFrameworkCore;
 
