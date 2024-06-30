@@ -1,7 +1,9 @@
 # LibraryManagement
 
 This is my repository for Technical assigment from Databac.</br>
-During the weekend I will finish this project and update readme
+This project has been uploaded to azure and also I made fron-end in react.</br>
+front-end: https://library-management-57fr.vercel.app/  </br>
+front-end repo: https://github.com/f1l1ph/libraryManagement
 
 <h2>Design patterns:</h2>
 Fot this project I chose CQRS and repository patterns.</br>
@@ -21,6 +23,8 @@ Repository is responsible for communicating with database using entity framework
 <h3>Validation</h3>
 Added validation using Fluent validation library.
 Validation works when adding/modifing book. Also when adding new BorrowOrder.
+
+Also Emailworker checks every 24h for closeDate on each BorrowOrder and sends fake email.
 
 <em>endpoints on the swagger screenshot.</em></br>
 ![Datapac-swagger](https://github.com/f1l1ph/Zadanie-Datapac/assets/50553234/c8a7a274-f3b1-4039-9956-f00a0ada7ec1)
