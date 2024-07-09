@@ -1,11 +1,7 @@
 # LibraryManagement
 
-<h3>This is my repository for Technical assigment from Databac.</h3>
-This project has been uploaded to azure and also I made fron-end in react.</br>
-front-end: https://library-management-57fr.vercel.app/  </br>
 front-end repo: https://github.com/f1l1ph/libraryManagement</br>
-If you open frontend and something is wrong please wait or refresh page.</br>
-Also validation doesn't work on frontend, it is because I want to show that it works on backend.
+Validation doesn't work on frontend, it is because I want to show that it works on backend.
 
 <h2>Details:</h2>
 <ul>
